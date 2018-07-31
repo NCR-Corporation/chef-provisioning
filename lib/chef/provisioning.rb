@@ -95,6 +95,7 @@ module Provisioning
     if driver
       machine_options = { :convergence_options => { :chef_server => chef_server } }
       machine_options = Cheffish::MergedConfig.new(config[:machine_options], machine_options) if config[:machine_options]
+      machine_options[:transport_options] = config[:transport_options] if config[:transport_options]
       driver.connect_to_machine(machine_spec, machine_options)
     else
       nil
